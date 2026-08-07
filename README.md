@@ -62,7 +62,7 @@ credentials, public IP addresses or decompiled classes unrelated to the proposed
 
 The repository is being prepared for public collaboration. A final source-code license
 must be selected before publication, and the game-derived override classes require a
-separate permission review. See [docs/LICENSING.md](docs/LICENSING.md).
+separate permission review. See [License.txt](License.txt).
 
 ## Disclaimer
 
