@@ -1,0 +1,65 @@
+plugins {
+    id 'java'
+}
+
+group = 'io.github.fortukiing'
+version = '0.8.0'
+
+def defaultGameJar = 'C:/Program Files (x86)/Steam/steamapps/common/Songs of Syx/SongsOfSyx.jar'
+def songsOfSyxJar = providers.gradleProperty('songsOfSyxJar')
+    .orElse(providers.environmentVariable('SONGS_OF_SYX_JAR'))
+    .orElse(defaultGameJar)
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+sourceSets {
+    main {
+        java.srcDirs = ['src/main/java', 'src/game-overrides/java']
+    }
+    test {
+        java.srcDirs = ['src/test/java']
+    }
+}
+
+dependencies {
+    compileOnly files(songsOfSyxJar)
+    testImplementation files(songsOfSyxJar)
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 21
+    options.encoding = 'UTF-8'
+}
+
+tasks.named('jar') {
+    archiveFileName = 'syx-together.jar'
+}
+
+tasks.register('protocolTest', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'coopmod.CoopProtocolTest'
+}
+
+tasks.register('saveTransferTest', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'coopmod.CoopSaveTransferTest'
+}
+
+tasks.named('check') {
+    dependsOn protocolTest, saveTransferTest
+}
+
+tasks.register('assembleMod', Copy) {
+    dependsOn jar
+    into layout.buildDirectory.dir('dist/Syx Together')
+    from('mod')
+    from(tasks.named('jar')) {
+        into 'V71/script'
+    }
+}

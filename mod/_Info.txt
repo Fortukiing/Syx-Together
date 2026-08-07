@@ -1,0 +1,7 @@
+VERSION: "0.2",
+GAME_VERSION_MAJOR: 71,
+GAME_VERSION_MINOR: 70,
+NAME: "Syx Together",
+DESC: "Clean modular rebuild of the real-time co-op multiplayer mod, with host-authoritative command sync, construction retries, menu value sync, resources, NPC movement, events, time, weather, diplomacy, army orders, and version checks.",
+AUTHOR: "Fortukiing",
+INFO: "",

@@ -1,0 +1,38 @@
+# Build output
+build/
+.gradle/
+*.class
+*.jar
+*.zip
+
+# Songs of Syx runtime data
+*.save
+coop-log*.txt
+error*.txt
+crash*.txt
+logs/
+saves/
+steam_appid.txt
+
+# Personal configuration and secrets
+/config.txt
+config.local.txt
+local.properties
+.env
+.env.*
+
+# Backups and crash dumps
+*.bak
+*.bak_*
+*.backup
+*.tmp
+*.dmp
+hs_err_pid*.log
+
+# Editors and operating systems
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+

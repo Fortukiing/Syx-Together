@@ -1,0 +1,94 @@
+# Syx Together config
+# Both players must use the same Songs of Syx version, same mods, and the same save/new-game setup.
+#
+# MODE:
+# OFF    = disabled
+# HOST   = opens a local server and applies actions from one client
+# CLIENT = connects to the host and sends/receives placement actions
+#
+# Test setup:
+# 1. Player A: MODE = HOST
+# 2. Player B: MODE = CLIENT and HOST = Player A IP
+# 3. Start/load the same game state on both computers.
+# 4. Game speed/pause and player placement actions are synced by the mod.
+#
+# Recommended setup:
+# Use the Multiplayer button in the main menu.
+# Host New Game / Host Load Game prepares HOST mode.
+# Connect prepares CLIENT mode, requests the host save automatically, then loads it.
+#
+# This config is still used as a fallback if you do not use the Multiplayer menu.
+#
+# Error log:
+# Serious connection/snapshot/load errors are written to coop-log.txt in this mod folder.
+#
+# Full state sync is disabled by default.
+# The correct multiplayer path is command sync, not live-loading saves.
+# Keep these false unless you are debugging resync behavior.
+
+MODE = OFF
+HOST = 127.0.0.1
+PORT = 49710
+
+FULL_STATE_SYNC = false
+FULL_STATE_LIVE_LOAD = false
+FULL_STATE_INTERVAL_MS = 1000
+
+# NPC sync:
+# The host sends humanoid/NPC position, direction, speed, and basic sprite timing to clients.
+# Lower interval = closer real-time movement, but more network traffic.
+# Lower pixel threshold = stricter correction.
+# 0 = strict host position mode, best sync but less smoothing on weak connections.
+# 2 = smoother movement with a little more visual delay.
+NPC_SYNC = true
+NPC_SYNC_INTERVAL_MS = 16
+NPC_SYNC_MAX_PER_PACKET = 2000
+NPC_SYNC_MAX_PACKETS_PER_TICK = 4
+NPC_SYNC_PIXEL_THRESHOLD = 0
+NPC_REMOTE_AUTHORITY = true
+
+# World sync:
+# Keeps host time-of-day/year and weather values authoritative on clients.
+WORLD_SYNC = true
+WORLD_SYNC_INTERVAL_MS = 16
+
+# UI/resource sanity sync:
+# Host sends money, available resources, and resource history checks to clients.
+# Credits are corrected directly. Resource mismatches are logged because resource counts come from real stockpiles/crates.
+# Lower interval = faster mismatch detection, but more network traffic.
+UI_SANITY_SYNC = true
+UI_SANITY_INTERVAL_MS = 16
+UI_SANITY_LOG_MISMATCHES = true
+UI_SANITY_MISMATCH_LOG_INTERVAL_MS = 2000
+
+# Diplomacy deal/menu value sync:
+# Keeps temporary diplomacy deal values in sync when both players are editing the same diplomacy screen.
+# This covers offer/demand toggles, money, regions, and resources before the deal is accepted.
+DIPLOMACY_DEAL_SYNC = true
+DIPLOMACY_DEAL_SYNC_INTERVAL_MS = 50
+
+# Gameplay menu command sync:
+# Keeps technology/research unlocks and forget actions synced between host and clients.
+TECH_SYNC = true
+# Keeps import/export price caps, treasury limits, and trade quotas synced.
+TRADE_SETTINGS_SYNC = true
+# Keeps room employee targets, auto-employ toggles, and workforce priorities synced.
+ROOM_EMPLOYMENT_SYNC = true
+# Keeps gameplay values changed from city/realm UI menus synced.
+# This does not sync opening or closing menus, only the actual gameplay changes made inside them.
+GAMEPLAY_MENU_SYNC = true
+
+# Remote cursor/look marker:
+# Sends the active view, mouse position, and camera/look pixel so both players can see where the other player is pointing.
+# Lower interval = smoother cursor movement. 50ms is light, 16ms is maximum smoothness.
+CURSOR_SYNC = true
+CURSOR_RENDER = true
+CURSOR_SYNC_INTERVAL_MS = 50
+# Cursor color uses the game's normal cursor sprite. 127/127/127 keeps the original sprite color.
+# You can also change it live in-game from the Syx Together cursor panel.
+CURSOR_COLOR_R = 127
+CURSOR_COLOR_G = 127
+CURSOR_COLOR_B = 127
+
+# Extra logging goes to the Songs of Syx stdout/error log.
+DEBUG = true

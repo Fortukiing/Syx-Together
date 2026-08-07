@@ -1,0 +1,57 @@
+name: Bug report
+description: Report a reproducible crash, desync or multiplayer problem.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Syx Together is experimental. Please remove passwords, public IP addresses, Steam tokens and personal paths from logs before attaching them.
+  - type: dropdown
+    id: transport
+    attributes:
+      label: Connection mode
+      options:
+        - LAN
+        - Steam
+    validations:
+      required: true
+  - type: input
+    id: game-version
+    attributes:
+      label: Songs of Syx version
+      placeholder: 0.71.44
+    validations:
+      required: true
+  - type: input
+    id: mod-version
+    attributes:
+      label: Syx Together version
+      placeholder: 0.8.0
+    validations:
+      required: true
+  - type: textarea
+    id: setup
+    attributes:
+      label: Setup and enabled mods
+      description: State which computer was host and list every enabled mod on both computers.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Describe the exact actions on the host and client in order.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Expected and actual result
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sanitized logs or screenshots
+      description: Attach only the relevant section. Never post a save unless a maintainer requests it privately.
