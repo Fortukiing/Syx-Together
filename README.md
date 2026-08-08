@@ -58,15 +58,8 @@ read [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/TESTING.md](docs/TESTING.md) f
 Please do not submit game binaries, saves, logs containing personal information, Steam
 credentials, public IP addresses or decompiled classes unrelated to the proposed fix.
 
-## Licensing Status
-
-The repository is being prepared for public collaboration. A final source-code license
-must be selected before publication, and the game-derived override classes require a
-separate permission review. See [License.txt](License.txt).
-
 ## Disclaimer
 
 Syx Together is an unofficial community project. Songs of Syx and its assets belong to
-their respective owners. This repository must not contain the game JAR, data archives,
-textures, saves or other proprietary game assets.
+their respective owners.
 
